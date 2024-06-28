@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class ParcelDeliverySystem {
+public class UIPickup {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -146,4 +146,3 @@ class ParcelDeliveryUI extends JFrame {
         }
     }
 }
-

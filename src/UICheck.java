@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ParcelDelivery3 {
+public class UICheck {
     public static void main(String[] args) {
         // Create frame
         JFrame frame = new JFrame("Parcel Tracking Application");
