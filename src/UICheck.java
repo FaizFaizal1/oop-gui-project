@@ -3,12 +3,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class UICheck extends JFrame {
-    private JLabel titleLabel, lblParcelID, lblName;
+public class UICheck extends JFrame implements ActionListener{
+    private JLabel titleLabel, lblParcelID, lblStatus;
     private JTextField txtParcelTrackingNumber, txtName;
     private JButton btnTrack;
+
+    DBHelper db = new DBHelper();
+    ArrayList<String> names = db.getAllCustomerNames();
+    ArrayList<Integer> parcelTrackingNumbers = db.getAllTrackingNumber();
     
     public UICheck() {
         super.setTitle("Parcel Collection Application");
@@ -33,14 +38,14 @@ public class UICheck extends JFrame {
             txtParcelTrackingNumber = new JTextField(10); // Smaller text field
             JLabel labelReceiverName = new JLabel("Receiver's Name:");
             txtName = new JTextField(10); // Smaller text field
-            JButton buttonTrack = new JButton("Track Parcel");
-            buttonTrack.setPreferredSize(new Dimension(120, 25)); // Adjust button size
+            btnTrack = new JButton("Track Parcel");
+            btnTrack.setPreferredSize(new Dimension(120, 25)); // Adjust button size
 
             JCheckBox checkBoxDelivered = new JCheckBox("Delivered");
             JButton buttonPickup = new JButton("Pickup");
             buttonPickup.setVisible(false); // Hide pickup button initially
 
-//            JLabel labelStatus = new JLabel("Status: ");
+            lblStatus = new JLabel("Status: ");
 //            JLabel imageLabel = new JLabel();
 
             // Add components to textFieldsPanel
@@ -50,7 +55,7 @@ public class UICheck extends JFrame {
             textFieldsPanel.add(txtName);
 
             // Add components to buttonPanel
-            buttonPanel.add(buttonTrack);
+            buttonPanel.add(btnTrack);
             buttonPanel.add(checkBoxDelivered);
 
             // Add components to inputPanel
@@ -58,7 +63,7 @@ public class UICheck extends JFrame {
             inputPanel.add(buttonPanel);
 
             // Add components to other panels
-//            statusPanel.add(labelStatus);
+            statusPanel.add(lblStatus);
 //            imagePanel.add(imageLabel);
             pickupButtonPanel.add(buttonPickup);
 
@@ -81,30 +86,24 @@ public class UICheck extends JFrame {
 //                System.out.println("Human image not found");
 //            }
 
-            // Add action listener to the button
-            buttonTrack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String parcelID = txtParcelTrackingNumber.getText();
-                    String receiverName = txtName.getText();
-                }
-            });
+        //register elements to the event listener
+        btnTrack.addActionListener(this);
 
             // Add action listener to the pickup button
-            buttonPickup.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JFrame pickupFrame = new JFrame("Pickup Details");
-                    pickupFrame.setSize(300, 200);
-                    pickupFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    pickupFrame.setLayout(new FlowLayout());
-
-                    JLabel pickupLabel = new JLabel("Parcel has been picked up by " + txtName.getText());
-                    pickupFrame.add(pickupLabel);
-
-                    pickupFrame.setVisible(true);
-                }
-            });
+//            buttonPickup.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    JFrame pickupFrame = new JFrame("Pickup Details");
+//                    pickupFrame.setSize(300, 200);
+//                    pickupFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//                    pickupFrame.setLayout(new FlowLayout());
+//
+//                    JLabel pickupLabel = new JLabel("Parcel has been picked up by " + txtName.getText());
+//                    pickupFrame.add(pickupLabel);
+//
+//                    pickupFrame.setVisible(true);
+//                }
+//            });
 
         // Set frame visibility
         super.setVisible(true);
@@ -113,5 +112,19 @@ public class UICheck extends JFrame {
     public static void main(String[] args) {
         new UICheck();
     }
-}
 
+    // Add action listener to the button
+    public void actionPerformed(ActionEvent e) {
+        String nameInput = txtName.getText();
+        String parcelTrackingNumber = txtParcelTrackingNumber.getText();
+        if (e.getSource() == btnTrack) {
+            for (String name : names) {
+                if (name.equals(nameInput)) {
+                    lblStatus.setText("Parcel arrived at Tanjung!");
+                }
+            }
+
+        }
+    }
+    
+}
