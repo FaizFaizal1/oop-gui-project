@@ -13,6 +13,7 @@ public class UICheck extends JFrame implements ActionListener{
 
     DBHelper db = new DBHelper();
     ArrayList<String> names = db.getAllCustomerNames();
+
     
     public UICheck() {
         super.setTitle("Parcel Collection Application");
