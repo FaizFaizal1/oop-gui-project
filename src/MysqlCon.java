@@ -10,6 +10,8 @@ public class MysqlCon {
                 System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getTimestamp(4));
             }
 
+
+
             con.close();
 
         } catch(Exception e) {
