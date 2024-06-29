@@ -7,7 +7,7 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
     private JPanel pnlTop, pnlMain;
     private JLabel lblAlibaba, lblParcelID, lblCustomerName, lblStatus;
     private JTextField txtParcelID, txtCustomerName;
-    private JButton btnTrack;
+    private JButton btnCheckParcelID, btnCheckParcelName;
     public CheckNameAndTrackNum() {
         // Create frame
         JFrame frame = new JFrame("Parcel Collection Application");
@@ -54,12 +54,19 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         txtCustomerName.setFont(labelFont);
         txtCustomerName.setBounds(150, 130, 200, 25);
 
-        btnTrack = new JButton("Track parcel");
-        btnTrack.setFont(buttonFont);
-        btnTrack.setBackground(new Color(100, 149, 237)); // Cornflower blue
-        btnTrack.setBackground(Color.RED);
-        btnTrack.setForeground(Color.WHITE);
-        btnTrack.setBounds(150, 160, 200, 25); // Adjusted size to match receiver's name input field
+        btnCheckParcelID = new JButton("Track");
+        btnCheckParcelID.setFont(buttonFont);
+        btnCheckParcelID.setBackground(new Color(100, 149, 237)); // Cornflower blue
+        btnCheckParcelID.setBackground(Color.RED);
+        btnCheckParcelID.setForeground(Color.WHITE);
+        btnCheckParcelID.setBounds(350, 70, 100, 25); // Adjusted size to match receiver's name input field
+
+        btnCheckParcelName = new JButton("Track");
+        btnCheckParcelName.setFont(buttonFont);
+        btnCheckParcelName.setBackground(new Color(100, 149, 237)); // Cornflower blue
+        btnCheckParcelName.setBackground(Color.RED);
+        btnCheckParcelName.setForeground(Color.WHITE);
+        btnCheckParcelName.setBounds(350, 130, 100, 25); // Adjusted size to match receiver's name input field
 
         lblStatus = new JLabel("Status:");
         lblStatus.setFont(labelFont);
@@ -70,7 +77,8 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         pnlMain.add(txtParcelID);
         pnlMain.add(lblCustomerName);
         pnlMain.add(txtCustomerName);
-        pnlMain.add(btnTrack);
+        pnlMain.add(btnCheckParcelID);
+        pnlMain.add(btnCheckParcelName);
         pnlMain.add(lblStatus);
 
         // Center the frame on the screen
@@ -79,17 +87,30 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         int centerY = (int) ((screenSize.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(centerX, centerY);
 
-        btnTrack.addActionListener(this);
+        // Register elements
+        btnCheckParcelID.addActionListener(this);
+        btnCheckParcelName.addActionListener(this);
 
         // Show frame
         frame.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnTrack) {
+        if (e.getSource() == btnCheckParcelID) {
+
+        } else if (e.getSource() == btnCheckParcelName) {
 
         }
     }
+
+    /*
+    x. if name is not null
+        x. if name equals name in database
+            x. display "Parcel arrived at Tanjung"
+            x. option to pickup
+        x. else
+            x. name not
+     */
 
 }
 
