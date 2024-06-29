@@ -20,7 +20,7 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         pnlTop.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 
         // Create Alibaba label with custom styling
-        lblAlibaba = new JLabel("ALIBABA DELIVERY");
+        lblAlibaba = new JLabel("Tanjung Parcel Collection");
         lblAlibaba.setFont(new Font("Arial", Font.BOLD, 24));
         lblAlibaba.setForeground(Color.WHITE); // Set text color to white
         pnlTop.add(lblAlibaba);
@@ -61,7 +61,7 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         btnTrack.setForeground(Color.WHITE);
         btnTrack.setBounds(150, 160, 200, 25); // Adjusted size to match receiver's name input field
 
-        lblStatus = new JLabel("Status: ");
+        lblStatus = new JLabel("Status:");
         lblStatus.setFont(labelFont);
         lblStatus.setBounds(150, 220, 350, 25); // Position below delivered checkbox
 

@@ -1,28 +1,31 @@
+import java.sql.Date;
+import java.sql.Timestamp;
+
 public class Customer {
-    private String customerId;
+    private int customerId;
     private String customerName;
     private String trackingNumber;
-    private String date;
+    private Date date;
 
     public Customer() {
-        customerId = null;
+        customerId = 0;
         customerName = null;
         trackingNumber = null;
         date = null;
     }
 
-    public Customer(String customerId, String customerName, String trackingNumber, String date) {
+    public Customer(int customerId, String customerName, String trackingNumber, Date date) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.trackingNumber = trackingNumber;
         this.date = date;
     }
 
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -42,11 +45,11 @@ public class Customer {
         this.trackingNumber = trackingNumber;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
