@@ -4,20 +4,20 @@ import java.sql.Timestamp;
 public class Customer {
     private int customerId;
     private String customerName;
-    private String trackingNumber;
+    private String parcelID;
     private Date date;
 
     public Customer() {
         customerId = 0;
         customerName = null;
-        trackingNumber = null;
+        parcelID = null;
         date = null;
     }
 
-    public Customer(int customerId, String customerName, String trackingNumber, Date date) {
+    public Customer(int customerId, String customerName, String parcelID, Date date) {
         this.customerId = customerId;
         this.customerName = customerName;
-        this.trackingNumber = trackingNumber;
+        this.parcelID = parcelID;
         this.date = date;
     }
 
@@ -37,12 +37,12 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public String getTrackingNumber() {
-        return trackingNumber;
+    public String getParcelID() {
+        return parcelID;
     }
 
-    public void setTrackingNumber(String trackingNumber) {
-        this.trackingNumber = trackingNumber;
+    public void setParcelID(String parcelID) {
+        this.parcelID = parcelID;
     }
 
     public Date getDate() {
@@ -58,7 +58,7 @@ public class Customer {
         return "Customer{" +
                 "customerId='" + customerId + '\'' +
                 ", customerName='" + customerName + '\'' +
-                ", trackingNumber='" + trackingNumber + '\'' +
+                ", parcelID='" + parcelID + '\'' +
                 ", date='" + date + '\'' +
                 '}';
     }

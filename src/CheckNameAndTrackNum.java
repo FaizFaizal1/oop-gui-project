@@ -2,12 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class CheckNameAndTrackNum extends JFrame implements ActionListener {
     private JPanel pnlTop, pnlMain;
     private JLabel lblAlibaba, lblParcelID, lblCustomerName, lblStatus;
     private JTextField txtParcelID, txtCustomerName;
-    private JButton btnCheckParcelID, btnCheckParcelName;
+    private JButton btnCheckParcelID, btnCheckCustomerName;
     public CheckNameAndTrackNum() {
         // Create frame
         JFrame frame = new JFrame("Parcel Collection Application");
@@ -61,14 +62,14 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         btnCheckParcelID.setForeground(Color.WHITE);
         btnCheckParcelID.setBounds(350, 70, 100, 25); // Adjusted size to match receiver's name input field
 
-        btnCheckParcelName = new JButton("Track");
-        btnCheckParcelName.setFont(buttonFont);
-        btnCheckParcelName.setBackground(new Color(100, 149, 237)); // Cornflower blue
-        btnCheckParcelName.setBackground(Color.RED);
-        btnCheckParcelName.setForeground(Color.WHITE);
-        btnCheckParcelName.setBounds(350, 130, 100, 25); // Adjusted size to match receiver's name input field
+        btnCheckCustomerName = new JButton("Track");
+        btnCheckCustomerName.setFont(buttonFont);
+        btnCheckCustomerName.setBackground(new Color(100, 149, 237)); // Cornflower blue
+        btnCheckCustomerName.setBackground(Color.RED);
+        btnCheckCustomerName.setForeground(Color.WHITE);
+        btnCheckCustomerName.setBounds(350, 130, 100, 25); // Adjusted size to match receiver's name input field
 
-        lblStatus = new JLabel("Status:");
+        lblStatus = new JLabel();
         lblStatus.setFont(labelFont);
         lblStatus.setBounds(150, 220, 350, 25); // Position below delivered checkbox
 
@@ -78,7 +79,7 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         pnlMain.add(lblCustomerName);
         pnlMain.add(txtCustomerName);
         pnlMain.add(btnCheckParcelID);
-        pnlMain.add(btnCheckParcelName);
+        pnlMain.add(btnCheckCustomerName);
         pnlMain.add(lblStatus);
 
         // Center the frame on the screen
@@ -87,19 +88,41 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         int centerY = (int) ((screenSize.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(centerX, centerY);
 
+
+
         // Register elements
         btnCheckParcelID.addActionListener(this);
-        btnCheckParcelName.addActionListener(this);
+        btnCheckCustomerName.addActionListener(this);
 
         // Show frame
         frame.setVisible(true);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
+
+        DBHelper db = new DBHelper();
+        ArrayList<Customer> customers = db.getAllCustomers();
+        ArrayList<String> parcelIDs = new ArrayList<String>();
+        ArrayList<String> customerNames = new ArrayList<String>();
+        for (Customer customer : customers) {
+            parcelIDs.add(customer.getParcelID());
+            customerNames.add(customer.getCustomerName());
+        }
+
+
         if (e.getSource() == btnCheckParcelID) {
-
-        } else if (e.getSource() == btnCheckParcelName) {
-
+            if (parcelIDs.contains(txtParcelID.getText())) {
+                lblStatus.setText("Your parcel arrived at Tanjung");
+            } else {
+                lblStatus.setText("No parcel with that ID");
+            }
+        } else if (e.getSource() == btnCheckCustomerName) {
+            if (customerNames.contains(txtCustomerName.getText())) {
+                lblStatus.setText("Your parcel arrived at Tanjung");
+            } else {
+                lblStatus.setText("No parcel with that name");
+            }
         }
     }
 
@@ -111,6 +134,10 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         x. else
             x. name not
      */
+
+    public static void main(String[] args) {
+        new CheckNameAndTrackNum();
+    }
 
 }
 
