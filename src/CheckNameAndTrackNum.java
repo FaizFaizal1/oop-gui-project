@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class CheckNameAndTrackNum extends JFrame implements ActionListener {
     private JPanel pnlTop, pnlMain;
-    private JLabel lblAlibaba, lblParcelID, lblCustomerName, lblStatus;
+    private JLabel lblAlibaba, lblParcelID, lblCustomerName;
     private JTextField txtParcelID, txtCustomerName;
     private JButton btnCheckParcelID, btnCheckCustomerName;
     public CheckNameAndTrackNum() {
@@ -69,10 +69,6 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         btnCheckCustomerName.setForeground(Color.WHITE);
         btnCheckCustomerName.setBounds(350, 130, 100, 25); // Adjusted size to match receiver's name input field
 
-        lblStatus = new JLabel();
-        lblStatus.setFont(labelFont);
-        lblStatus.setBounds(150, 220, 350, 25); // Position below delivered checkbox
-
         // Add components to main panel
         pnlMain.add(lblParcelID);
         pnlMain.add(txtParcelID);
@@ -80,7 +76,6 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         pnlMain.add(txtCustomerName);
         pnlMain.add(btnCheckParcelID);
         pnlMain.add(btnCheckCustomerName);
-        pnlMain.add(lblStatus);
 
         // Center the frame on the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -111,15 +106,19 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
 
         if (e.getSource() == btnCheckParcelID) {
             if (parcelIDs.contains(txtParcelID.getText())) {
-                lblStatus.setText("Your parcel arrived at Tanjung!");
+                JOptionPane.showMessageDialog(this,"Your parcel arrived at Tanjung!");
+                new Pickup();
+                super.dispose();
             } else {
-                lblStatus.setText("No parcel with that ID");
+                JOptionPane.showMessageDialog(this,"No parcel with that ID");
             }
         } else if (e.getSource() == btnCheckCustomerName) {
             if (customerNames.contains(txtCustomerName.getText())) {
-                lblStatus.setText("Your parcel arrived at Tanjung!");
+                JOptionPane.showMessageDialog(this,"Your parcel arrived at Tanjung!");
+                new Pickup();
+                super.dispose();
             } else {
-                lblStatus.setText("No parcel with that name");
+                JOptionPane.showMessageDialog(this,"No parcel with that name");
             }
         }
     }
