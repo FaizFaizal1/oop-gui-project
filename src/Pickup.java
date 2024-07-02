@@ -119,16 +119,10 @@ public class Pickup extends JFrame {
     private class GenerateOrderIdButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (uploadedPhotoPath != null && !uploadedPhotoPath.isEmpty()) {
-                String orderId = generateOrderId();
-                JOptionPane.showMessageDialog(null, "Your order ID is: " + orderId);
+                JOptionPane.showMessageDialog(null, "Your order ID is: 3"); //replace with customer ID
             } else {
                 JOptionPane.showMessageDialog(null, "Please upload a photo first.");
             }
-        }
-
-        private String generateOrderId() {
-            // Simulate generating an order ID
-            return "ORD" + System.currentTimeMillis();
         }
     }
 }
