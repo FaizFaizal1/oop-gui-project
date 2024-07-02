@@ -88,8 +88,6 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
         int centerY = (int) ((screenSize.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(centerX, centerY);
 
-
-
         // Register elements
         btnCheckParcelID.addActionListener(this);
         btnCheckCustomerName.addActionListener(this);
@@ -113,35 +111,20 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
 
         if (e.getSource() == btnCheckParcelID) {
             if (parcelIDs.contains(txtParcelID.getText())) {
-                lblStatus.setText("Your parcel arrived at Tanjung");
+                lblStatus.setText("Your parcel arrived at Tanjung!");
             } else {
                 lblStatus.setText("No parcel with that ID");
             }
         } else if (e.getSource() == btnCheckCustomerName) {
             if (customerNames.contains(txtCustomerName.getText())) {
-                lblStatus.setText("Your parcel arrived at Tanjung");
+                lblStatus.setText("Your parcel arrived at Tanjung!");
             } else {
                 lblStatus.setText("No parcel with that name");
             }
         }
     }
-
-    /*
-    x. if name is not null
-        x. if name equals name in database
-            x. display "Parcel arrived at Tanjung"
-            x. option to pickup
-        x. else
-            x. name not
-     */
-
     public static void main(String[] args) {
         new CheckNameAndTrackNum();
     }
 
 }
-
-// Method to validate receiver's name (only letters and spaces allowed)
-//    private static boolean isValidReceiverName(String name) {
-//        return name.matches("[a-zA-Z ]+");
-//    }

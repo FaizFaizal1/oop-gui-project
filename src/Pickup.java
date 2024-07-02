@@ -5,12 +5,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class Pickup extends JFrame {
-    private JLabel photoLabel;
+    private JLabel photoLabel, titleLabel, parcelQuestionLabel;
     private String uploadedPhotoPath;
-    private JButton yesButton;
-    private JButton noButton;
-    private JButton uploadButton;
-    private JButton generateOrderIdButton;
+    private JButton yesButton, noButton, uploadButton, generateOrderIdButton;
 
     public Pickup() {
         setTitle("Parcel Delivery System");
@@ -33,7 +30,7 @@ public class Pickup extends JFrame {
         topPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         topPanel.setBackground(new Color(72, 61, 139));  // Dark slate blue
 
-        JLabel titleLabel = new JLabel("Parcel Delivery System");
+        titleLabel = new JLabel("Parcel Delivery System");
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         topPanel.add(titleLabel);
@@ -43,7 +40,7 @@ public class Pickup extends JFrame {
         centerPanel.setBackground(new Color(230, 230, 250));
         centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JLabel parcelQuestionLabel = new JLabel("Do you want to pick up a parcel?");
+        parcelQuestionLabel = new JLabel("Do you want to pick up a parcel?");
         parcelQuestionLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 
         yesButton = new JButton("Yes");
