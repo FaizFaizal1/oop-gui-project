@@ -112,6 +112,8 @@ public class Pickup extends JFrame {
                 photoLabel.setText("Uploaded: " + selectedFile.getName());
                 generateOrderIdButton.setEnabled(true);
             }
+
+            new MySqlImage(uploadedPhotoPath);
         }
     }
 

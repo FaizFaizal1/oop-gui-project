@@ -36,6 +36,4 @@ public class MySqlImage extends JFrame {
         new MySqlImage("C:\\Users\\wmfbw\\Downloads\\dataset\\Chairs, Stools or Benches\\1.jpg");
 
     }
-
-
 }
