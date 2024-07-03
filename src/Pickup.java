@@ -14,7 +14,6 @@ public class Pickup extends JFrame {
         setSize(600, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
 
         initComponents();
 
@@ -124,5 +123,9 @@ public class Pickup extends JFrame {
                 JOptionPane.showMessageDialog(null, "Please upload a photo first.");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Pickup();
     }
 }

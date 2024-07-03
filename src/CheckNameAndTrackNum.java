@@ -122,8 +122,4 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
             }
         }
     }
-    public static void main(String[] args) {
-        new CheckNameAndTrackNum();
-    }
-
 }
