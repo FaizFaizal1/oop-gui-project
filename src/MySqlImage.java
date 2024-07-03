@@ -15,7 +15,6 @@ public class MySqlImage extends JFrame {
                 super.paintComponent(g);
                 ImageIcon imageIcon = new ImageIcon(imagePath);
                 Image image = imageIcon.getImage();
-//                image = image.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
 
                 if (image != null) {
                     int x = (getWidth() - image.getWidth(null)) / 2;
