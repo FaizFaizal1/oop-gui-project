@@ -10,14 +10,14 @@ public class Pickup extends JFrame {
     private JButton yesButton, noButton, uploadButton, generateOrderIdButton;
 
     public Pickup() {
-        setTitle("Parcel Delivery System");
-        setSize(600, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        super.setTitle("Parcel Delivery System");
+        super.setSize(600, 500);
+        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setLocationRelativeTo(null);
 
         initComponents();
 
-        setVisible(true);
+        super.setVisible(true);
     }
 
     private void initComponents() {
