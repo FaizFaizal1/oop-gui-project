@@ -5,7 +5,6 @@ import java.awt.*;
 
 
 public class MySqlImage extends JFrame {
-
     public MySqlImage(String imagePath) {
         JPanel panel = new JPanel() {
             @Override
