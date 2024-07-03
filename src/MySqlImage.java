@@ -26,7 +26,7 @@ public class MySqlImage extends JFrame {
         this.getContentPane().add(panel);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 1200);
+        setSize(600, 500);
         setLocationRelativeTo(null);
         setVisible(true);
     }
