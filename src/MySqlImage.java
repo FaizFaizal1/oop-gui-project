@@ -1,10 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-
-
 public class MySqlImage extends JFrame {
     public MySqlImage(String imagePath) {
-        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        super.setTitle("Uploaded Image");
         super.setSize(600, 500);
         super.setLocationRelativeTo(null);
         Container cp = super.getContentPane();
