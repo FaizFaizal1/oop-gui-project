@@ -1,17 +1,22 @@
 import javax.swing.*;
-//import org.apache.commons.codec.binary.Base64;
-//import java.util.Base64;
 import java.awt.*;
 
 
 public class MySqlImage extends JFrame {
     public MySqlImage(String imagePath) {
-        JPanel panel = new JPanel() {
+        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setSize(600, 500);
+        super.setLocationRelativeTo(null);
+        Container cp = super.getContentPane();
+
+        JPanel panel;
+        panel = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 ImageIcon imageIcon = new ImageIcon(imagePath);
                 Image image = imageIcon.getImage();
+//                image = image.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
 
                 if (image != null) {
                     int x = (getWidth() - image.getWidth(null)) / 2;
@@ -23,16 +28,13 @@ public class MySqlImage extends JFrame {
             }
         };
 
-        this.getContentPane().add(panel);
+        cp.add(panel);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 500);
-        setLocationRelativeTo(null);
-        setVisible(true);
+        super.setVisible(true);
     }
 
     public static void main(String[] args) {
-        new MySqlImage("C:\\Users\\wmfbw\\Downloads\\dataset\\Chairs, Stools or Benches\\1.jpg");
+        new MySqlImage("C:\\Users\\wmfbw\\OneDrive\\Documents\\1.jpg");
 
     }
 }
