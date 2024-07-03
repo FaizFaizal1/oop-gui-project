@@ -6,34 +6,38 @@ import java.util.ArrayList;
 
 public class CheckNameAndTrackNum extends JFrame implements ActionListener {
     private JPanel pnlTop, pnlMain;
-    private JLabel lblAlibaba, lblParcelID, lblCustomerName;
+    private JLabel lblStoreName, lblParcelID, lblCustomerName;
     private JTextField txtParcelID, txtCustomerName;
     private JButton btnCheckParcelID, btnCheckCustomerName;
     public CheckNameAndTrackNum() {
-        // Create frame
-        JFrame frame = new JFrame("Parcel Collection Application");
-        frame.setSize(600, 500); // Set initial size
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setSize(600,500);
+        super.setTitle("Parcel Collection Application");
+
+        Container cp = super.getContentPane();
+        cp.setLayout(new BorderLayout());
 
         // Create top panel
         pnlTop = new JPanel();
         pnlTop.setBackground(new Color(72, 61, 139)); // Dark slate blue
         pnlTop.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 
-        // Create Alibaba label with custom styling
-        lblAlibaba = new JLabel("Tanjung Parcel Collection");
-        lblAlibaba.setFont(new Font("Arial", Font.BOLD, 24));
-        lblAlibaba.setForeground(Color.WHITE); // Set text color to white
-        pnlTop.add(lblAlibaba);
+        // Create store name label with custom styling
+        lblStoreName = new JLabel("Tanjung Parcel Collection");
+        lblStoreName.setFont(new Font("Arial", Font.BOLD, 24));
+        lblStoreName.setForeground(Color.WHITE); // Set text color to white
+        pnlTop.add(lblStoreName);
 
-        // Add top panel to the frame's NORTH position
-        frame.add(pnlTop, BorderLayout.NORTH);
+        // Add pnlTop to north of content pane
+        cp.add(pnlTop, BorderLayout.NORTH);
 
         // Create main panel for center content
         pnlMain = new JPanel();
         pnlMain.setLayout(null); // Use null layout for absolute positioning
         pnlMain.setBackground(new Color(230, 230, 250)); // Light lavender background
-        frame.add(pnlMain, BorderLayout.CENTER); // Add main panel to the center of the frame
+
+        // Add pnmMain to center of content pane
+        cp.add(pnlMain, BorderLayout.CENTER);
 
         // Create components with adjusted styling
         Font labelFont = new Font("Arial", Font.BOLD, 16);
@@ -79,16 +83,16 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
 
         // Center the frame on the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int centerX = (int) ((screenSize.getWidth() - frame.getWidth()) / 2);
-        int centerY = (int) ((screenSize.getHeight() - frame.getHeight()) / 2);
-        frame.setLocation(centerX, centerY);
+        int centerX = (int) ((screenSize.getWidth() - super.getWidth()) / 2);
+        int centerY = (int) ((screenSize.getHeight() - super.getHeight()) / 2);
+        super.setLocation(centerX, centerY);
 
         // Register elements
         btnCheckParcelID.addActionListener(this);
         btnCheckCustomerName.addActionListener(this);
 
         // Show frame
-        frame.setVisible(true);
+        super.setVisible(true);
     }
 
     @Override
@@ -102,7 +106,6 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
             parcelIDs.add(customer.getParcelID());
             customerNames.add(customer.getCustomerName());
         }
-
 
         if (e.getSource() == btnCheckParcelID) {
             if (parcelIDs.contains(txtParcelID.getText())) {
@@ -121,5 +124,9 @@ public class CheckNameAndTrackNum extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this,"No parcel with that name");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new CheckNameAndTrackNum();
     }
 }
