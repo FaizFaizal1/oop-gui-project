@@ -26,6 +26,4 @@ class DBHelper {
         return custList;
     }
 
-    public static void main(String[] args) {
-    }
 }

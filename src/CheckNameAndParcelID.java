@@ -91,7 +91,6 @@ public class CheckNameAndParcelID extends JFrame implements ActionListener {
 
         super.setVisible(true);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
