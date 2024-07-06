@@ -3,11 +3,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
-public class Pickup extends JFrame {
+public class Pickup extends JFrame implements ActionListener {
     private JLabel photoLabel, titleLabel, parcelQuestionLabel;
     private String uploadedPhotoPath;
-    private JButton yesButton, noButton, uploadButton, generateOrderIdButton;
+    private JButton btnYes, btnNo, btnUpload, btnGenerateOrderId;
 
     public Pickup() {
         super.setTitle("Parcel Delivery System");
@@ -15,118 +16,113 @@ public class Pickup extends JFrame {
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setLocationRelativeTo(null);
 
-        initComponents();
+        Container cp = super.getContentPane();
+        cp.setLayout(new BorderLayout());
+        cp.setBackground(new Color(230, 230, 250));
 
-        super.setVisible(true);
-    }
-
-    private void initComponents() {
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.setBackground(new Color(230, 230, 250));  // Light lavender background
-
-        JPanel topPanel = new JPanel();
-        topPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
-        topPanel.setBackground(new Color(72, 61, 139));  // Dark slate blue
+        JPanel pnlTop = new JPanel();
+        pnlTop.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        pnlTop.setBackground(new Color(72, 61, 139));  // Dark slate blue
 
         titleLabel = new JLabel("Parcel Delivery System");
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        topPanel.add(titleLabel);
+        pnlTop.add(titleLabel);
 
-        JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new GridLayout(6, 1, 10, 10));
-        centerPanel.setBackground(new Color(230, 230, 250));
-        centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        JPanel pnlCenter = new JPanel();
+        pnlCenter.setLayout(new GridLayout(6, 1, 10, 10));
+        pnlCenter.setBackground(new Color(230, 230, 250));
+        pnlCenter.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         parcelQuestionLabel = new JLabel("Do you want to pick up a parcel?");
         parcelQuestionLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 
-        yesButton = new JButton("Yes");
-        yesButton.setBackground(new Color(100, 149, 237));  // Cornflower blue
-        yesButton.setForeground(Color.WHITE);
-        yesButton.setFont(new Font("Arial", Font.PLAIN, 16));
-        yesButton.addActionListener(new YesButtonListener());
+        btnYes = new JButton("Yes");
+        btnYes.setBackground(new Color(100, 149, 237));  // Cornflower blue
+        btnYes.setForeground(Color.WHITE);
+        btnYes.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        noButton = new JButton("No");
-        noButton.setBackground(new Color(255, 69, 0));  // Red
-        noButton.setForeground(Color.WHITE);
-        noButton.setFont(new Font("Arial", Font.PLAIN, 16));
-        noButton.addActionListener(new NoButtonListener());
+        btnNo = new JButton("No");
+        btnNo.setBackground(new Color(255, 69, 0));  // Red
+        btnNo.setForeground(Color.WHITE);
+        btnNo.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        uploadButton = new JButton("Upload Photo");
-        uploadButton.setBackground(new Color(100, 149, 237));
-        uploadButton.setForeground(Color.WHITE);
-        uploadButton.setFont(new Font("Arial", Font.PLAIN, 16));
-        uploadButton.addActionListener(new UploadButtonListener());
-        uploadButton.setVisible(false);
+        btnUpload = new JButton("Upload Photo");
+        btnUpload.setBackground(new Color(100, 149, 237));
+        btnUpload.setForeground(Color.WHITE);
+        btnUpload.setFont(new Font("Arial", Font.PLAIN, 16));
+        btnUpload.setVisible(false);
 
         photoLabel = new JLabel("No photo uploaded");
         photoLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         photoLabel.setVisible(false);
 
-        generateOrderIdButton = new JButton("Generate Order ID");
-        generateOrderIdButton.setBackground(new Color(100, 149, 237));
-        generateOrderIdButton.setForeground(Color.WHITE);
-        generateOrderIdButton.setFont(new Font("Arial", Font.PLAIN, 16));
-        generateOrderIdButton.addActionListener(new GenerateOrderIdButtonListener());
-        generateOrderIdButton.setEnabled(false);
-        generateOrderIdButton.setVisible(false);
+        btnGenerateOrderId = new JButton("Generate Order ID");
+        btnGenerateOrderId.setBackground(new Color(100, 149, 237));
+        btnGenerateOrderId.setForeground(Color.WHITE);
+        btnGenerateOrderId.setFont(new Font("Arial", Font.PLAIN, 16));
+        btnGenerateOrderId.setEnabled(false);
+        btnGenerateOrderId.setVisible(false);
 
-        centerPanel.add(parcelQuestionLabel);
-        centerPanel.add(yesButton);
-        centerPanel.add(noButton);
-        centerPanel.add(uploadButton);
-        centerPanel.add(photoLabel);
-        centerPanel.add(generateOrderIdButton);
+        pnlCenter.add(parcelQuestionLabel);
+        pnlCenter.add(btnYes);
+        pnlCenter.add(btnNo);
+        pnlCenter.add(btnUpload);
+        pnlCenter.add(photoLabel);
+        pnlCenter.add(btnGenerateOrderId);
 
-        mainPanel.add(topPanel, BorderLayout.NORTH);
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
-
-        add(mainPanel);
+        cp.add(pnlTop, BorderLayout.NORTH);
+        cp.add(pnlCenter, BorderLayout.CENTER);
+        
+        // Register elements
+        btnYes.addActionListener(this);
+        btnNo.addActionListener(this);
+        btnUpload.addActionListener(this);
+        btnGenerateOrderId.addActionListener(this);
+        
+        super.setVisible(true);
     }
 
-    private class YesButtonListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            yesButton.setVisible(false);
-            noButton.setVisible(false);
-            uploadButton.setVisible(true);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnYes) {
+            btnYes.setVisible(false);
+            btnNo.setVisible(false);
+            btnUpload.setVisible(true);
             photoLabel.setVisible(true);
-            generateOrderIdButton.setVisible(true);
-        }
-    }
+            btnGenerateOrderId.setVisible(true);
 
-    private class NoButtonListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
+        } else if (e.getSource() == btnNo) {
             dispose();  // Close the window
-        }
-    }
 
-    private class UploadButtonListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
+        } else if (e.getSource() == btnUpload) {
             JFileChooser fileChooser = new JFileChooser();
             int returnValue = fileChooser.showOpenDialog(null);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fileChooser.getSelectedFile();
                 uploadedPhotoPath = selectedFile.getAbsolutePath();
                 photoLabel.setText("Uploaded: " + selectedFile.getName());
-                generateOrderIdButton.setEnabled(true);
+                btnGenerateOrderId.setEnabled(true);
             }
 
-            new MySqlImage(uploadedPhotoPath);
-        }
-    }
+            new ImageGenerator(uploadedPhotoPath);
 
-    private class GenerateOrderIdButtonListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
+        } else if (e.getSource() == btnGenerateOrderId) {
+            DBHelper db = new DBHelper();
+            ArrayList<Customer> customers = db.getAllCustomers();
+            ArrayList<String> parcelIDs = new ArrayList<String>();
+
+            for(Customer customer : customers) {
+                parcelIDs.add(customer.getParcelID());
+            }
+
             if (uploadedPhotoPath != null && !uploadedPhotoPath.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Your order ID is: 3"); //replace with customer ID
+                JOptionPane.showMessageDialog(null, "Your order ID is: " + CheckNameAndParcelID.getOrderID());
             } else {
                 JOptionPane.showMessageDialog(null, "Please upload a photo first.");
             }
         }
     }
-
     public static void main(String[] args) {
         new Pickup();
     }

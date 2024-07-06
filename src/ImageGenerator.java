@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-public class MySqlImage extends JFrame {
-    public MySqlImage(String imagePath) {
+public class ImageGenerator extends JFrame {
+    public ImageGenerator(String imagePath) {
         super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         super.setTitle("Uploaded Image");
         super.setSize(600, 500);
@@ -20,8 +20,6 @@ public class MySqlImage extends JFrame {
                     int x = (getWidth() - image.getWidth(null)) / 2;
                     int y = (getHeight() - image.getHeight(null)) / 2;
                     g.drawImage(image, x, y, this);
-                } else {
-                    System.out.println("No image found");
                 }
             }
         };
@@ -29,10 +27,5 @@ public class MySqlImage extends JFrame {
         cp.add(panel);
 
         super.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new MySqlImage("C:\\Users\\wmfbw\\OneDrive\\Documents\\1.jpg");
-
     }
 }
