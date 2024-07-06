@@ -24,7 +24,7 @@ public class Pickup extends JFrame implements ActionListener {
         pnlTop.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         pnlTop.setBackground(new Color(72, 61, 139));  // Dark slate blue
 
-        titleLabel = new JLabel("Parcel Delivery System");
+        titleLabel = new JLabel("Tanjung Parcel Collection");
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         pnlTop.add(titleLabel);
